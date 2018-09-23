@@ -1,0 +1,10 @@
+properties([parameters([choice(choices: ['master', 'feature', 'task'], description: '', name: 'branch')])])
+
+node{
+    stage('checkout'){
+        git 'https://github.com/shre45/myapp'
+    }
+    stage('build'){
+        sh 'mvn clean package'
+    }
+}
