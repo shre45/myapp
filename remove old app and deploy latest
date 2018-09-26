@@ -1,0 +1,21 @@
+node{
+    stage('checkout'){
+        git 'https://github.com/javahometech/my-app'
+    }
+    stage('build'){
+        sh 'mvn clean package'
+    }
+    stage('deploy'){
+      sshagent(['tomcat']) {
+        
+       sh '''sftp -o StrictHostKeyChecking=no ec2-user@172.31.20.9 <<EOF
+             rm  /home/ec2-user/tomcat/webapps/*
+             put target/*.war /home/ec2-user/tomcat/webapps/
+             bye
+            EOF
+            ssh ec2-user@172.31.20.9  /home/ec2-user/tomcat/bin/startup.sh'''
+
+    }
+
+    }
+}
