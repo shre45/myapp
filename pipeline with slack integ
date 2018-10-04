@@ -1,0 +1,31 @@
+node{
+    stage('checkout'){
+        git 'https://github.com/javahometech/my-app'
+    }
+    stage('build'){
+        sh 'mvn clean package'
+    }
+    stage('deploy'){
+      sshagent(['tomcat']) {
+        
+       sh '''sftp -o StrictHostKeyChecking=no ec2-user@172.31.46.229 <<EOF
+             rm  /home/ec2-user/tomcat/webapps/my*
+             put target/*.war /home/ec2-user/tomcat/webapps/
+             bye
+            EOF
+            ssh ec2-user@172.31.46.229  /home/ec2-user/tomcat/bin/startup.sh'''
+
+    }
+
+    }
+    stage('slack notification'){
+       slackSend baseUrl: 'https://hooks.slack.com/services/',
+       channel: '#aws',
+       color: 'good',
+       message: "Job -  ${env.JOB_NAME}, Completed successfully Build URL is ${env.BUILD_URL}, build id is ${env.BUILD_ID}",
+       teamDomain: 'skgroupsolutions',
+       tokenCredentialId: 'slack'
+
+    }
+    
+}
