@@ -77,12 +77,12 @@
             <executions>
 		    <execution>
 			    <id>default-deploy</id>
-			    <phase>deploy</deploy>
+			    <phase>deploy</phase>
 			    <goals>
 				    <goal>deploy</goal>
 			    </goals>
 		    </execution>
-		</executions>
+	    </executions>
 	 </plugin>
 	    <plugin>
                 <groupId>com.spotify</groupId>
