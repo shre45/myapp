@@ -8,9 +8,9 @@ node{
     // def mvnHome = tool 'maven3'
     sh "mvn clean package" 
  }
- stage('Send Email'){
+/* stage('Send Email'){
      mail bcc: '', body: 'Demo Pipeline', cc: '', from: '', replyTo: '', subject: 'Pipeline Demo', to: 'hari.kammana@gmail.com'
- }
+ }*/
  stage('Archive'){
      archiveArtifacts 'target/*.war'
  }
