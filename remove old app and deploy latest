@@ -15,6 +15,7 @@ node{
             EOF
             ssh ec2-user@172.31.20.9  /home/ec2-user/tomcat/bin/startup.sh'''
 
+
     }
 
     }
