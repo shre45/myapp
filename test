@@ -2,16 +2,24 @@ pipeline {
   agent any
   stages {
     stage ("checkout") {
-      echo "checked out from git"
+      steps {
+        echo "checked out from git"
+	}
     }
-     stage ("build") {
-      echo "building the package"
+    stage ("build") {
+      steps {
+        echo "building the package"
+	}
     }
-     stage ("testing") {
-      echo "tested"
+    stage ("testing") {
+      steps {
+        echo "tested"
+	}
     }
-     stage ("from master") {
-      echo "from the master branch"
+    stage ("from master") {
+      steps {
+        echo "from the master branch"
+	}
     }
   }
 }
