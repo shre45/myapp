@@ -19,6 +19,7 @@ pipeline {
     stage ("from master") {
       steps {
         echo "from the master branch"
+	echo " build only master branch"
 	}
     }
   }
