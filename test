@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+  stages {
+    stage ("checkout") {
+      echo "checked out from git"
+    }
+     stage ("build") {
+      echo "building the package"
+    }
+     stage ("testing") {
+      echo "tested"
+    }
+     stage ("from feature") {
+      echo "from the feature branch"
+    }
+  }
+}
